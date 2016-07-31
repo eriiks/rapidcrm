@@ -7,6 +7,11 @@ class LeadsController < ApplicationController
     @leads = Lead.all
   end
 
+  def import
+    Lead.import(params[:file])
+    redirect_to leads_url, notice: "Leads imported"
+  end
+
   # GET /leads/1
   # GET /leads/1.json
   def show
