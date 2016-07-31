@@ -1,6 +1,13 @@
 <p id="notice"><%= notice %></p>
-
 <h1>Leads</h1>
+
+<%= form_tag leads_path, method: :get do %>
+
+  <%= text_field_tag 'search[date_from]', @search.date_from %>
+  <%= text_field_tag 'search[date_to]', @search.date_to %>
+<%= submit_tag "Search", class: 'btn' %>
+<% end %>
+
 
 <div class="container-fluid">
 	<div class="row">
@@ -25,7 +32,7 @@
 					</tr>
 				</thead>
 				<tbody>
-           <% @leads.each do |lead| %>
+       <% @leads.each do |lead| %>
 					<tr>
 						<td>
 							<%= lead.name %>
@@ -63,4 +70,9 @@
     <br>
     <%= submit_tag "Import Leads", class: "btn btn-default" %>
   <% end %>
+</div>
+
+<div class="well">
+  <h3>Download</h3>
+  <%= link_to "Download as CSV", leads_path(format: "csv") %>
 </div>
