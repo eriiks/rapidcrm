@@ -13,6 +13,8 @@ class LeadsController < ApplicationController
     respond_to do |format|
       format.html
       format.csv { render text: @leads.to_csv }
+      format.json { render json: Lead.limit(100) }
+      format.xml { render xml: Lead.limit(50) }
     end
 
   end
